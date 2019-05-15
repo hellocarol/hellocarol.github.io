@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="node js koa vue react springmvc mongodb mysql jquery bootstrap"><meta name="keywords" content=""><meta name="author" content="cici,undefined"><meta name="copyright" content="cici"><title>cici的个人小站 | hellocici</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.4.3"><script>var GLOBAL = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  localSearch: undefined
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">cici</div><div class="author-info__description text-center">node js koa vue react springmvc mongodb mysql jquery bootstrap</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">2</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">4</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">1</span></a></div></div></div><nav class="no-bg" id="nav" style="background-image: url(true)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">hellocici</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="site-info"><div id="site-title">hellocici</div><div id="site-sub-title">cici的个人小站</div><div id="site-social-icons"> <a class="social-icon" href="https://github.com/hellocarol" target="_blank"><i class="fa fa-github"></i></a><a class="social-icon" href="https://weibo.com/u/5209982775" target="_blank"><i class="fa fa-weibo"></i></a></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item"><a class="article-title" href="/2018/07/25/ubuntu环境中使用geth搭建私有网络/">ubuntu环境中使用geth搭建私有网络</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-07-25</time><div class="content"><p>相对于图形化操作界面的以太坊客户端mist，基于Go语言开发的geth始终跑在终端里。它提供了一个交互式命令控制台，控制台中包含了以太坊的各种功能。<br>下面介绍一下如何在ubuntu环境中通过geth搭建私有网络。</p>
+<h4 id="1-创建运行文件夹"><a href="#1-创建运行文件夹" class="headerlink" title="1.创建运行文件夹"></a>1.创建运行文件夹</h4><h4 id="2-在文件夹下创建json文件"><a href="#2-在文件夹下创建json文件" class="headerlink" title="2.在文件夹下创建json文件"></a>2.在文件夹下创建json文件</h4><p>文件中输入：</p>
+<!--
+{
+
+  "config": {
+
+        "chainId": 10,
+        "homesteadBlock": 0,
+        "eip155Block": 0,
+        "eip158Block": 0
+    },
+  "alloc"      : {},
+
+  "coinbase"   : "0x0000000000000000000000000000000000000000",
+
+  "difficulty" : "0x02000000",
+
+  "extraData"  : "",
+
+  "gasLimit"   : "0x2fefd8",
+
+  "nonce"      : "0x0000000000000042",
+
+  "mixhash"    : "0x0000000000000000000000000000000000000000000000000000000000000000",
+
+  "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+
+  "timestamp"  : "0x00"
+}//这个是错误的，后面会各种报错
+ -->
+<pre><code>```{
+   &quot;coinbase&quot;: &quot;0x0000000000000000000000000000000000000000&quot;,
+
+   &quot;config&quot;: {
+          &quot;homesteadBlock&quot;: 5
+    },
+
+   &quot;difficulty&quot;: &quot;0x20000&quot;,
+
+   &quot;extraData&quot;: &quot;0x&quot;,
+
+   &quot;gasLimit&quot;: &quot;0x2FEFD8&quot;,
+
+   &quot;mixhash&quot;: &quot;0x00000000000000000000000000000000000000647572616c65787365646c6578&quot;,
+
+   &quot;nonce&quot;: &quot;0x0&quot;,
+
+   &quot;parentHash&quot;: &quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,
+
+   &quot;timestamp&quot;: &quot;0x00&quot;,
+
+   &quot;alloc&quot;: {
+          &quot;dbdbdb2cbd23b783741e8d7fcf51e459b497e4a6&quot;:
+          {
+              &quot;balance&quot;:&quot;100000000000000000000000000000&quot;
+          }
+   }
+}```
+</code></pre><!--这个是对的-->
+<p>若是输入不当会报错：invalid genesis file: json: cannot unmarshal hex string without 0x prefix into Go struct field Genesis.extraData of type hexutil.Bytes 等</p>
+<p><strong>解释一下各个参数的作用：</strong></p>
+<ul>
+<li><p>mixhash    ：与nonce配合用于挖矿，由上一个区块的一部分生成的hash。注意他和nonce的设置需要满足以太坊的Yellow paper, 4.3.4. Block Header Validity, (44)章节所描述的条件。.</p>
+</li>
+<li><p>nonce：nonce就是一个64位随机数，用于挖矿，注意他和mixhash的设置需要满足以太坊的Yellow paper, 4.3.4. Block Header Validity, (44)章节所描述的条件。</p>
+</li>
+<li><p>difficulty：设置当前区块的难度，如果难度过大，cpu挖矿就很难，这里设置较小难度</p>
+</li>
+<li><p>alloc：用来预置账号以及账号的以太币数量，因为私有链挖矿比较容易，所以我们不需要预置有币的账号，需要的时候自己创建即可以。</p>
+</li>
+<li><p>coinbase：矿工的账号，随便填</p>
+</li>
+<li><p>timestamp：设置创世块的时间戳</p>
+</li>
+<li><p>parentHash：上一个区块的hash值，因为是创世块，所以这个值是0</p>
+</li>
+<li><p>extraData：附加信息，随便填，可以填你的个性信息</p>
+</li>
+<li><p>gasLimit：该值设置对GAS的消耗总量限制，用来限制区块能包含的交易信息总和，因为我们是私有链，所以填最大。</p>
+</li>
+</ul>
+<p><strong>然后进入创建的文件夹执行创造区块命令：</strong></p>
+<p><code>geth --datadir &quot;./&quot; init &quot;./genesis.json&quot;</code></p>
+<h4 id="3-启动私有链"><a href="#3-启动私有链" class="headerlink" title="3.启动私有链"></a>3.启动私有链</h4><p><strong>进入私有链：</strong><code>geth --datadir &quot;./&quot; --nodiscover console 2&gt;&gt;geth.log</code></p>
+<ul>
+<li>–datadir 代表文件夹地址</li>
+<li>–nodiscover 表示私有链不要让公网上的节点发现</li>
+<li>代码 console 2&gt;&gt; geth.log 代表将控制台的一部分输出，输出到文件geth.log上去</li>
+</ul>
+<p>启动Geth即可以启动以太坊的区块链，为了构建私有链 ，需要在Geth启动时加入一些参数，Geth参数含义如下： </p>
+<ul>
+<li>identity：区块链的标示，随便填写，用于标示目前网络的名字</li>
+<li>init：指定创世块文件的位置，并创建初始块</li>
+<li>datadir：设置当前区块链网络数据存放的位置</li>
+<li>port：网络监听端口</li>
+<li>rpc：启动rpc通信，可以进行智能合约的部署和调试</li>
+<li>rpcapi：设置允许连接的rpc的客户端，一般为db,eth,net,web3</li>
+<li>networkid：设置当前区块链的网络ID，用于区分不同的网络，是一个数字</li>
+<li>console：启动命令行模式，可以在Geth中执行命令</li>
+</ul>
+<h4 id="4-在私有链上创建用户"><a href="#4-在私有链上创建用户" class="headerlink" title="4.在私有链上创建用户"></a>4.在私有链上创建用户</h4><p>输入命令eth.accounts, 我们会发现返回值为[]</p>
+<p>这是因为此时虽然以太坊的私有链已经被创造出来，但还没有任何账户。</p>
+<p>输入命令<code>personal.newAccount(“xxx”)</code>, 该命令将创造一个新的用户，XXX为密码</p>
+<h4 id="5-输出日志"><a href="#5-输出日志" class="headerlink" title="5.输出日志"></a>5.输出日志</h4><p>输出区块链的Log，打开另一个终端，找到geth.log的所在目录，执行命令 tail -f geth.log 从而持续的输出日志。</p>
+<h4 id="6-开始挖矿"><a href="#6-开始挖矿" class="headerlink" title="6.开始挖矿"></a>6.开始挖矿</h4><p>在console下执行<code>miner.start()</code></p>
+<p><strong><em>命令总结</em></strong></p>
+<ol>
+<li>创建私有链geth –datadir “./“ init “./genesis.json”</li>
+<li>进入私有链geth –datadir “./“ console</li>
+<li>创建账户personal.newAccount(“password”)</li>
+<li>查账户余额，在geth命令行中键入：<code>my=eth.accounts[0]   eth.getBalance(my)</code></li>
+<li>开始和停止挖矿miner.start()  miner.stop()</li>
+<li>解锁账户personal.unlockAccount(my)</li>
+<li>转账：eth.sendTransaction({from:my, to:other, value:10000})//转账之前要先解锁</li>
+<li>挖矿后eth.blockNumber都会发现块在不停的增高。</li>
+</ol>
+<p><strong><em>参考链接</em></strong></p>
+<p><a href="https://blog.csdn.net/niekai01/article/details/65679843" target="_blank" rel="noopener">https://blog.csdn.net/niekai01/article/details/65679843</a><br><a href="https://blog.csdn.net/sportshark/article/details/51855007" target="_blank" rel="noopener">https://blog.csdn.net/sportshark/article/details/51855007</a><br><a href="https://blog.csdn.net/wo541075754/article/details/79260040//miner.start()返回null的问题" target="_blank" rel="noopener">https://blog.csdn.net/wo541075754/article/details/79260040//miner.start()返回null的问题</a></p>
+<p>关于私有链的问题：<a href="https://blog.csdn.net/weixin_40401264/article/details/78095222" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40401264/article/details/78095222</a></p>
+</div><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/03/08/hexo的第一天/">hexo 的第一天</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-08</time><div class="content"><p>从大二开始作为一个<strong>伪前端</strong>，断断续续写了三年多的代码了，从csdn上转到个人博客，打算支摊好好干啦yep! &gt;M&lt;</p>
+</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By cici</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.4.3"></script><script src="/js/fancybox.js?version=1.4.3"></script><script src="/js/sidebar.js?version=1.4.3"></script><script src="/js/copy.js?version=1.4.3"></script><script src="/js/fireworks.js?version=1.4.3"></script><script src="/js/transition.js?version=1.4.3"></script><script src="/js/scroll.js?version=1.4.3"></script><script src="/js/head.js?version=1.4.3"></script></body></html>
