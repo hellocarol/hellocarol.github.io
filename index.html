@@ -134,21 +134,18 @@
 <p>spidermonkey，第一款JavaScript引擎，用于如Firefox</p>
 <p>chakra(Jscript引擎），用于IE11</p>
 <p>chakra(JavaScript引擎），用于Microsoft Edge</p>
-<p>###1.基本工作<br>把开发人员写的 JavaScript 代码转换成高效、优化的代码，这样就可以通过浏览器进行解释甚至嵌入到应用中。很难界定JavaScript引擎是编译器还是解释器。因为像V8引擎，为了提高JS的运行性能，在运行之前会将js编译为本地的机器码，然后再去执行机器码。</p>
-<p>###2.组成：</p>
-<p>-编译器。主要工作是将源代码编译成抽象语法树，然后在某些引擎中还包含将抽象语法树转换成字节码。</p>
+<h3 id="1-基本工作"><a href="#1-基本工作" class="headerlink" title="1.基本工作"></a>1.基本工作</h3><p>把开发人员写的 JavaScript 代码转换成高效、优化的代码，这样就可以通过浏览器进行解释甚至嵌入到应用中。很难界定JavaScript引擎是编译器还是解释器。因为像V8引擎，为了提高JS的运行性能，在运行之前会将js编译为本地的机器码，然后再去执行机器码。</p>
+<h3 id="2-组成："><a href="#2-组成：" class="headerlink" title="2.组成："></a>2.组成：</h3><p>-编译器。主要工作是将源代码编译成抽象语法树，然后在某些引擎中还包含将抽象语法树转换成字节码。</p>
 <p>-解释器。在某些引擎中，解释器主要是接受字节码，解释执行这个字节码，然后也依赖来及回收机制等。</p>
 <p>-JIT工具。一个能够JIT的工具，将字节码或者抽象语法树转换成本地代码，当然它也需要依赖牢记</p>
 <p>-垃圾回收器和分析工具（profiler）。它们负责垃圾回收和收集引擎中的信息，帮助改善引擎的性能和功效。</p>
-<p>###3.工作原理</p>
-<p>-JavaScriptCore：</p>
+<h3 id="3-工作原理"><a href="#3-工作原理" class="headerlink" title="3.工作原理"></a>3.工作原理</h3><p>-JavaScriptCore：</p>
 <p>  源代码-&gt;抽象语法树-&gt;字节码</p>
 <p>  通过词法分析器将源代码构建为抽象语法树，解析器生成字节码，4个JIM进程分析和执行字节码。</p>
 <p>-v8：</p>
 <p>  源代码-&gt;抽象语法树-&gt;本地码<br>  v8引擎并不将抽象语法树转化为字节码或其他中间表示，是为了减少这部分的时间，这部分在网页加载的时候完成，虽然可以提高优化的可能，但是带来巨大的时间浪费。</p>
-<p>###4.JavaScript引擎和ECMAscript的关系：<br><strong>前者根据后者定义的规则来解析js代码</strong></p>
-<p>###5.JavaScript引擎和浏览器的关系</p>
-<p>JavaScript引擎是浏览器的组成部分之一，不同的浏览器采用了不同的JavaScript引擎。</p>
+<h3 id="4-JavaScript引擎和ECMAscript的关系："><a href="#4-JavaScript引擎和ECMAscript的关系：" class="headerlink" title="4.JavaScript引擎和ECMAscript的关系："></a>4.JavaScript引擎和ECMAscript的关系：</h3><p><strong>前者根据后者定义的规则来解析js代码</strong></p>
+<h3 id="5-JavaScript引擎和浏览器的关系"><a href="#5-JavaScript引擎和浏览器的关系" class="headerlink" title="5.JavaScript引擎和浏览器的关系"></a>5.JavaScript引擎和浏览器的关系</h3><p>JavaScript引擎是浏览器的组成部分之一，不同的浏览器采用了不同的JavaScript引擎。</p>
 <p>对于网页的工作来说，需要两个引擎。渲染引擎和JavaScript引擎。 渲染引擎负责网页的渲染；JavaScript引擎负责JavaScript代码执行。</p>
 <p>JavaScript引擎提供调用接口被渲染引擎使用，渲染引擎使用的JavaScript引擎来处理js代码并获得结果。此外，JavaScript引擎需要渲染引擎提供桥接的接口以便能够访问渲染引擎构建的DOM树，操作DOM。js引擎和渲染引擎 属于互相调用的关系</p>
 </div><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/03/08/hexo的第一天/">hexo 的第一天</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-08</time><div class="content"><p>从大二开始作为一个<strong>伪前端</strong>，断断续续写了三年多的代码了，从csdn上转到个人博客，打算支摊好好干啦yep! &gt;M&lt;</p>
