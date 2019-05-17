@@ -165,7 +165,7 @@
 <li>当一个网页比较长，有好几个屏幕，而且加载了大量的图片、广告等资源文件时，分屏展示，可提升页面性能和用户体验。其实分屏展示也可以从按需加载的的角度来看待，默认是加载第一屏幕的内容，当滚动条拉动即将到达下一个屏幕时，再开始渲染下个屏的内容。换言之，是把图片、背景图片、HTML一起按需加载，一开始不对HTML进行解析，那么背景图、img图片也不会进行加载。</li>
 <li>实现思路<ul>
 <li>根据具体业务情况，收集主流最大的分辨率的高度；假设这里是用960px;</li>
-<li>按照这个高度进行分屏，依次把下一个屏幕内的HTML用<textarea>HTML&lt;/’textarea&gt; 来表示；</textarea></li>
+<li>按照这个高度进行分屏，依次把下一个屏幕内的HTML用<code>&lt;textarea&gt;HTML&lt;/textarea&gt;</code> 来表示；</li>
 <li>为了让页面的高度不变，需要让textarea占据一定的页面空间，也就是让页面出现对应的滚动条；因此需要指定样式visility:hidden，并指定它的高度和宽度。</li>
 <li>利用上述讲的按需执行JS，把<code>&lt;textarea&gt;HTML&lt;/textarea&gt;</code>里面的HTML代码提取出来，重新填充到textarea的父节点上，便可实现解析对应HTML，从而实现分屏展示。</li>
 </ul>
@@ -229,6 +229,7 @@ addLoadEvent(preloader);
 }
 </code></pre><h4 id="使用PreloadJS库"><a href="#使用PreloadJS库" class="headerlink" title="使用PreloadJS库"></a>使用PreloadJS库</h4>PreloadJS提供了一种预加载内容的一致方式，以便在HTML应用程序中使用。预加载可以使用HTML标签以及XHR来完成。默认情况下，PreloadJS会尝试使用XHR加载内容，因为它提供了对进度和完成事件的更好支持，但是由于跨域问题，使用基于标记的加载可能更好。</li>
 </ol>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="http://www.cnblogs.com/mamimi/p/7646358.html" target="_blank" rel="noopener">http://www.cnblogs.com/mamimi/p/7646358.html</a><br><a href="https://github.com/ljianshu/Blog/issues/8" target="_blank" rel="noopener">https://github.com/ljianshu/Blog/issues/8</a><br><a href="https://www.geekjc.com/post/58d94d0f16a3655650d6fafe" target="_blank" rel="noopener">https://www.geekjc.com/post/58d94d0f16a3655650d6fafe</a></p>
 </div><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/05/15/js引擎/">js引擎</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-15</time><div class="content"><p>JavaScript引擎是一个专门处理JavaScript脚本的程序虚拟机，一般会附带在网页浏览器之中。</p>
 <p>例如</p>
 <p> v8，用c++编写，Google Chrome一部分，也用于node.js</p>
