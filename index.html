@@ -128,10 +128,10 @@
 <p><a href="https://blog.csdn.net/niekai01/article/details/65679843" target="_blank" rel="noopener">https://blog.csdn.net/niekai01/article/details/65679843</a><br><a href="https://blog.csdn.net/sportshark/article/details/51855007" target="_blank" rel="noopener">https://blog.csdn.net/sportshark/article/details/51855007</a><br><a href="https://blog.csdn.net/wo541075754/article/details/79260040//miner.start()返回null的问题" target="_blank" rel="noopener">https://blog.csdn.net/wo541075754/article/details/79260040//miner.start()返回null的问题</a></p>
 <p>关于私有链的问题：<a href="https://blog.csdn.net/weixin_40401264/article/details/78095222" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40401264/article/details/78095222</a></p>
 </div><hr></div><div class="recent-post-item"><a class="article-title" href="/2018/05/17/按需加载和预加载/">按需加载和预加载</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-17</time><div class="content"><h2 id="按需加载和预加载"><a href="#按需加载和预加载" class="headerlink" title="按需加载和预加载"></a>按需加载和预加载</h2><p><strong>懒加载和预加载都是提高页面性能有效的办法，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</strong></p>
-<h3 id="一、按需加载"><a href="#一、按需加载" class="headerlink" title="一、按需加载"></a>一、按需加载</h3><p>定义： 通过一些用户行为或者定时任务去触发一些加载动作。比如但不限于以下几个情况：鼠标点击、输入文字、拉动滚动条，鼠标移动、窗口大小更改等。加载的文件，可以是JS、图片、CSS、HTML等。这个就是按需加载。</p>
+<h3 id="一、按需加载"><a href="#一、按需加载" class="headerlink" title="一、按需加载"></a>一、按需加载</h3><p>定义： 通过一些用户行为或者定时任务去触发一些加载动作。比如但不限于以下几个情况：鼠标点击、输入文字、拉动滚动条，鼠标移动、窗口大小更改等。加载的文件，可以是JS、图片  、CSS、HTML等。这个就是按需加载。</p>
 <h4 id="按需加载HTML"><a href="#按需加载HTML" class="headerlink" title="按需加载HTML"></a>按需加载HTML</h4><ol>
 <li>多页面结构就是按需加载的，目前针对单页面分析</li>
-<li>页面一开始不解析HTML，根据需要来解析HTML。解析HTML都是需要一定时间，特别是HTML中包含有img标签、引用了背景图片时，如果一开始就解析，那么势必会增加请求数。常见的有对话框、拉菜单、多标签的内容展示等，这些一开始是不需要解析，可以按需解析</li>
+<li>页面一开始不解析HTML，根据需要来解析HTML。 解析HTML都是需要一定时间，特别是HTML中包含有img标签、引用了背景图片时，如果一开始就解析，那么势必会增加请求数。常见的有对话框、拉菜单、多标签的内容展示等，这些一开始是不需要解析，可以按需解析</li>
 <li>实现方式</li>
 </ol>
 <pre><code>
